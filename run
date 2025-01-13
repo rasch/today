@@ -1,0 +1,25 @@
+#!/bin/sh
+
+clean() {
+  rm -f today
+}
+
+lint() {
+  find test -type f -exec shellcheck -xa src/assert.sh {} +
+}
+
+tests() {
+  cat src/assert.sh test/* | sh
+}
+
+build() {
+  find src -type f ! -name main.sh ! -name assert.sh -exec cat {} + > today
+  cat src/main.sh >> today
+  test -f today && chmod +x today
+}
+
+all() {
+  clean && lint && tests && build
+}
+
+"${@:-all}"
