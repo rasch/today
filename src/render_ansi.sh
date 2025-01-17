@@ -14,6 +14,7 @@ render_ansi() {
     nostrike=$(printf '\e[29m')
     underline=$(printf '\e[4m')
     nounderline=$(printf '\e[24m')
+    nocolor=$(printf '\e[39m')
 
     sed -E \
       -e "s/\*\*([^*]*)\*\*/$bold\1$nobold/g" \
@@ -23,6 +24,8 @@ render_ansi() {
       -e "s/\`([^\`]*)\`/$reverse\1$noreverse/g" \
       -e "s/~~([^~]*)~~/$strike\1$nostrike/g" \
       -e "s/^#[[:blank:]](.*)$/$underline$bold\1$nounderline$nobold/" \
-      -e "s/.*/$(printf '\e[%sm' "${1:-39}")&$(printf '\e[39m')/"
+      -e "s/[[:blank:]](@|!)[^[:blank:]]+/$(printf '\e[90m')&$nocolor/g" \
+      -e "s/[[:blank:]]\+[^[:blank:]]+/$bold&$nobold/g" \
+      -e "s/.*/$(printf '\e[%sm' "${1:-39}")&$nocolor/"
   fi
 }
