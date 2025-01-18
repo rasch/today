@@ -51,7 +51,7 @@ assert "$given" "$should" "$actual" "$expected"
 given='a line with `code` text'
 should='render the text with reverse escape'
 actual=$(printf '%s' "$given" | render_ansi)
-expected=$(printf "\e[39ma line with \e[7mcode\e[27m text\e[39m")
+expected=$(printf "\e[39ma line with \e[7m code \e[27m text\e[39m")
 
 assert "$given" "$should" "$actual" "$expected"
 
