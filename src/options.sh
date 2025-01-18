@@ -70,16 +70,15 @@ options() {
         ;;
 
       -s | --start)
-        #| **-s**, **--start** _HHMM_
-        #|     Use HHMM as start of the day when sorting scheduled
-        #|     tasks. HHMM should be in 24-hour time format for
-        #|     proper sorting. The default start of the day is 0430.
-        #|     A colon separator such as 04:30 is permitted.
+        #| **-s**, **--start** _HH:MM_
+        #|     Use HH:MM as start of the day when sorting scheduled
+        #|     tasks. HH:MM should be in 24-hour time format for
+        #|     proper sorting. The default start of the day is 04:30.
         #|
-        if ! printf '%s' "$2" | grep -Eq '^[012][[:digit:]]:?[012345][[:digit:]]$'; then
+        if ! printf '%s' "$2" | grep -Eq '^[012][[:digit:]]:[012345][[:digit:]]$'; then
           error 1 "Error: Invalid time: $2"
         fi
-        START="$2"
+        START="$(printf '%s' "$2" | tr -d ':')"
         shift 2
         ;;
 
@@ -350,7 +349,6 @@ options() {
   #| ### Scheduled Tasks
   #|
   #| **HH:MM**
-  #| **HHMM**
   #|     specific time in 24h format. The time must appear at the
   #|     beginning of the task (ignoring context `@` keywords).
   #|     for example:
