@@ -62,6 +62,17 @@ To install, move the `today` script somewhere in your $PATH. For example:
 mv today /usr/local/bin/
 ```
 
+To install from the CI build, run the following commands:
+
+```bash
+curl -O https://git.sr.ht/~rasch/today/refs/download/v0.1.0/today-v0.1.0.gz
+gunzip today-v0.1.0.gz
+chmod +x today-v0.1.0
+
+# the script can be moved to any directory in your $PATH, such as:
+mv today-v0.1.0 /usr/local/bin/today
+```
+
 ## Roadmap
 
 - Rewrite in a more feature-rich language so I can write a real parser and
