@@ -24,13 +24,13 @@ parse() {
     printf '%s\n' "$scheduled_time" | \
       timesort "$START" | \
       wrap_line "$WRAP" | \
-      render_ansi 32
+      render_ansi "${TODAY_COLOR_T:-32}"
   fi
 
   if test -n "$scheduled_tasks"; then
     printf '\n%s\n' "$scheduled_tasks" | \
       wrap_line "$WRAP" | \
-      render_ansi 37
+      render_ansi "${TODAY_COLOR_S:-37}"
   fi
 
   if test -n "$tasks"; then
@@ -38,13 +38,13 @@ parse() {
       sed 's/-[[:blank:]]\+\[[A-Z ]\][[:blank:]]/- /' | \
       strip_keywords | \
       wrap_line "$WRAP" | \
-      render_ansi 34
+      render_ansi "${TODAY_COLOR_P:-34}"
   fi
 
   if test -n "$reminders"; then
     printf '\n%s\n' "$reminders" | \
       strip_keywords '!' | \
       wrap_line "$WRAP" | \
-      render_ansi 35
+      render_ansi "${TODAY_COLOR_R:-35}"
   fi
 }

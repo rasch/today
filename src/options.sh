@@ -357,3 +357,26 @@ options() {
   #|       - @daily 15:30 meal 2
   #|       - @daily 19:30 meal 3
   #|       - @daily 23:30 meal 4
+  #|
+  #| ## Environment Variables
+  #|
+  #| To change the color of the output, the following environment
+  #| variables can be set to an integer between 30-37 or 90-97
+  #| (inclusive).
+  #|
+  #| **TODAY_COLOR_T**
+  #|     Set the color of scheduled tasks with a specific time.
+  #|     The default is **32**.
+  #|
+  #| **TODAY_COLOR_S**
+  #|     Set the color of scheduled tasks without a specific time.
+  #|     The default is **37**.
+  #|
+  #| **TODAY_COLOR_P**
+  #|     Set the color of priority/tag tasks.
+  #|     The default is **34**.
+  #|
+  #| **TODAY_COLOR_R**
+  #|     Set the color of reminders.
+  #|     The default is **35**.
+  #|

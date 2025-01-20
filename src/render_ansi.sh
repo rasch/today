@@ -23,8 +23,8 @@ render_ansi() {
       -e "s/([[:blank:]]|^)_([^_]*)_([[:blank:]]|$)/\1$italic\2$noitalic\3/g" \
       -e "s/\`([^\`]*)\`/$reverse \1 $noreverse/g" \
       -e "s/~~([^~]*)~~/$strike\1$nostrike/g" \
-      -e "s/^#[[:blank:]](.*)$/$underline$bold\1$nounderline$nobold/" \
-      -e "s/[[:blank:]](@|!)[^[:blank:]]+/$(printf '\e[90m')&$nocolor/g" \
+      -e "s/^#{1,6}[[:blank:]](.*)$/$underline$bold\1$nounderline$nobold/" \
+      -e "s/[[:blank:]](@|!)[^[:blank:]]+/$italic&$noitalic/g" \
       -e "s/[[:blank:]]\+[^[:blank:]]+/$bold&$nobold/g" \
       -e "s/.*/$(printf '\e[%sm' "${1:-39}")&$nocolor/"
   fi
