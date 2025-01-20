@@ -39,7 +39,7 @@ Also, check out [an example todo.md file][example] to see the file format in
 use.
 
 [example]: https://github.com/rasch/today/blob/main/example/todo.md?plain=1
-    
+
 ## Build and Installation
 
 To lint, test, and build `today` locally, run the following commands:
