@@ -1,0 +1,29 @@
+image: alpine/latest
+packages:
+  - hut
+  - shellcheck
+sources:
+  - https://git.sr.ht/~rasch/today
+environment:
+  project: today
+secrets:
+  - 7cc84f0d-059f-4477-accf-383ae72a4b68 # hut config
+tasks:
+  - lint: |
+      cd "$project"
+      sh run lint
+  - test: |
+      cd "$project"
+      sh run tests
+  - stop_if_not_release: |
+      cd "$project"
+      git describe --exact-match HEAD || complete-build
+  - build: |
+      cd "$project"
+      sh run build
+  - release: |
+      cd "$project"
+      tag=$(git describe --exact-match HEAD)
+      mv "$project" "$project-$tag"
+      gzip -9 "$project-$tag"
+      hut git artifact upload --rev $tag $project-$tag.gz
